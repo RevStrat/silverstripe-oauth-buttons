@@ -12,7 +12,7 @@ use Bigfork\SilverStripeOAuth\Client\Authenticator\Authenticator;
 use SilverStripe\Control\HTTPRequest;
 
 class ProviderLoginButtons extends DataExtension {
-    public function LoginButton($backURL = '/', $provider = NULL) {
+    public function LoginButton($provider = NULL, $textOverride = NULL) {
         
         $authenticator = Injector::inst()->get(Authenticator::class);
         $handler = $authenticator->getLoginHandler(Director::baseURL() . 'Security/login/oauth/');
@@ -22,6 +22,8 @@ class ProviderLoginButtons extends DataExtension {
             foreach($form->Actions() as $action) {
                 if ($action->Name !== "action_authenticate_$provider") {
                     $form->Actions()->remove($action);
+                } elseif ($textOverride) {
+                    $action->setTitle($textOverride);
                 }
             }
         }
