@@ -1,0 +1,12 @@
+{
+    "name": "RevStrat/silverstripe-oauth-buttons",
+    "description": "Support for generating login buttons for configured auth providers",
+    "require": {
+        "bigfork/silverstripe-oauth-login": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "RevStrat\\oauth-buttons\\": "src"
+        }
+    }
+}
