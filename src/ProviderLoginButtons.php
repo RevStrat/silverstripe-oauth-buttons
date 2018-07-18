@@ -10,7 +10,7 @@ use Bigfork\SilverStripeOAuth\Client\Authenticator\Authenticator;
 class ProviderLoginButtons extends DataExtension {
     public function LoginButton($backURL = '/', $provider = NULL) {
         $authenticator = Injector::inst()->get(Authenticator::class);
-        $handler = $authenticator->getLoginHandler($this->owner->Link());
+        $handler = $authenticator->getLoginHandler('/Security/login/oauth/');
         $form = $handler->loginForm();
 
         if ($provider) {
