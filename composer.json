@@ -11,6 +11,6 @@
         }
     },
     "extra": {
-+        "installer-name": "oauth-buttons"
-+    }
+       "installer-name": "oauth-buttons"
+   }
 }
