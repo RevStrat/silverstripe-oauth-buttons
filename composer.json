@@ -4,9 +4,13 @@
     "require": {
         "bigfork/silverstripe-oauth-login": "*"
     },
+    "type": "silverstripe-vendormodule",
     "autoload": {
         "psr-4": {
             "RevStrat\\oauth-buttons\\": "src"
         }
-    }
+    },
+    "extra": {
++        "installer-name": "oauth-buttons"
++    }
 }
