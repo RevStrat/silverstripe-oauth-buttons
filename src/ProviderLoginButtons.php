@@ -1,25 +1,15 @@
 <?php
 
-namespace RevStrat\OAuthButtons;
-
-use SilverStripe\Control\Controller;
-use SilverStripe\Control\Director;
-use SilverStripe\ORM\DataExtension;
-use SilverStripe\Core\Injector\Injector;
-use SilverStripe\Forms\HiddenField;
-use Bigfork\SilverStripeOAuth\Client\Authenticator\Authenticator;
-
-use SilverStripe\Control\HTTPRequest;
+use Bigfork\SilverStripeOAuth\Client\Authenticator\Authenticator as OAuthenticator;
 
 class ProviderLoginButtons extends DataExtension {
     public function LoginButton($provider = NULL, $textOverride = NULL) {
-        
-        $authenticator = Injector::inst()->get(Authenticator::class);
-        $handler = $authenticator->getLoginHandler(Director::baseURL() . 'Security/login/oauth/');
-        $form = $handler->loginForm();
-
+        $form =  OAuthenticator::get_login_form(Controller::curr());
+        $backURLField = $form->HiddenFields()->fieldByName('BackURL');
+        $backURLField->setValue($this->owner->Link());
+        $form->setFormAction('/Security/LoginForm');
         if ($provider) {
-            foreach($form->Actions() as $action) {
+            foreach ($form->Actions() as $action) {
                 if ($action->Name !== "action_authenticate_$provider") {
                     $form->Actions()->remove($action);
                 } elseif ($textOverride) {
@@ -27,7 +17,6 @@ class ProviderLoginButtons extends DataExtension {
                 }
             }
         }
-
         return $form;
     }
 }
