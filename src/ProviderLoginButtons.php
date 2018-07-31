@@ -6,7 +6,11 @@ class ProviderLoginButtons extends DataExtension {
     public function LoginButton($provider = NULL, $textOverride = NULL) {
         $form =  OAuthenticator::get_login_form(Controller::curr());
         $backURLField = $form->HiddenFields()->fieldByName('BackURL');
-        $backURLField->setValue($this->owner->Link());
+        if ($backURLField) {
+            $backURLField->setValue($this->owner->Link());
+        } else {
+            $form->HiddenFields()->add(HiddenField::create('BackURL', $this->owner->Link()));
+        }
         $form->setFormAction('/Security/LoginForm');
         if ($provider) {
             foreach ($form->Actions() as $action) {
