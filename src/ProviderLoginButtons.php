@@ -5,6 +5,8 @@ use Bigfork\SilverStripeOAuth\Client\Authenticator\Authenticator as OAuthenticat
 class ProviderLoginButtons extends DataExtension {
     public function LoginButton($provider = NULL, $textOverride = NULL) {
         $form =  OAuthenticator::get_login_form(Controller::curr());
+        $form->setHTMLID(uniqid('Auth_'));
+        $form->addExtraClass('OAuthAuthenticator');
         $backURLField = $form->HiddenFields()->fieldByName('BackURL');
         if ($backURLField) {
             $backURLField->setValue($this->owner->Link());
