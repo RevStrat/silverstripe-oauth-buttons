@@ -4,6 +4,7 @@ namespace RevStrat\OAuthButtons;
 
 use Bigfork\SilverStripeOAuth\Client\Authenticator\Authenticator as OAuthenticator;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\Forms\HiddenField;
 
 class ProviderLoginButtons extends DataExtension {
     public function LoginButton($provider = NULL, $textOverride = NULL) {
