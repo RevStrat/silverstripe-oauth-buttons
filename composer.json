@@ -4,7 +4,7 @@
     "require": {
         "bigfork/silverstripe-oauth-login": "*"
     },
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "extra": {
        "installer-name": "oauth-buttons"
    },
