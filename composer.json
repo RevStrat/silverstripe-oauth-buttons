@@ -7,5 +7,10 @@
     "type": "silverstripe-module",
     "extra": {
        "installer-name": "oauth-buttons"
+   },
+   "autoload": {
+        "psr-4": {
+            "RevStrat\\OAuthButtons\\": "src"
+        }
    }
 }
